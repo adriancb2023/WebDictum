@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictum - Dashboard</title>
+    <link rel="stylesheet" href="gta-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Estilos específicos para dashboard manteniendo el estilo GTA de Home.xaml */
+        body {
+            overflow-x: hidden; /* Evitar scroll horizontal por el pseudo-elemento */
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 200px 2px 1fr; /* Navbar, Divisor, Contenido */
+            min-height: 100vh;
+            background: #000000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-grid::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+            animation: subtleMove 30s ease-in-out infinite;
+            z-index: 0; /* Asegurarse de que esté detrás */
+        }
+
+        /* Divisor */
+        .divider {
+            width: 2px;
+            background-color: rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        .dashboard-content-wrapper {
+            position: relative;
+            z-index: 10;
+            margin: 20px;
+            padding: 0;
+        }
+
+        .dashboard-content-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para el área de contenido */
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            z-index: -1;
+        }
+
+        .dashboard-header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0 20px 0;
+            margin-bottom: 20px;
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        .sub-title {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            opacity: 0.8;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header-btn {
+            background: transparent;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #4ecdc4;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-btn img {
+            width: 25px;
+            height: 25px;
+            filter: invert(100%); /* Para iconos blancos en tema oscuro */
+        }
+
+        /* Card Style - Replicando CardStyle de XAML */
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            position: relative; 
+            overflow: hidden; 
+            border: 1px solid transparent; 
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            border-radius: 22px; 
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(8px); 
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            animation: neonCardPulse 4s ease-in-out infinite;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 30px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(255, 107, 107, 0.5),
+                0 0 80px rgba(78, 205, 196, 0.5); 
+            background: rgba(255, 255, 255, 0.1);
+            border-color: transparent; 
+        }
+
+        .dashboard-card:hover::before {
+            opacity: 1;
+            transform: scale(1.03); 
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-item {
+            text-align: left;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative; /* Para el pseudo-elemento */
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0.3;
+            filter: blur(5px);
+            animation: neonCardPulse 4s ease-in-out infinite reverse;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: transparent;
+        }
+
+        .stat-item:hover::before {
+            opacity: 0.7;
+            transform: scale(1.02);
+        }
+
+        .stat-title {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+        }
+
+        .stat-content {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        .stat-change-badge {
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .stat-change-positive {
+            background: rgba(78, 205, 196, 0.2);
+            color: #4ecdc4;
+        }
+
+        .stat-change-negative {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-button {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #ff5252, #26d0ce);
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-panel::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ffc107, #ff9800, #ff5722);
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0.3;
+            filter: blur(8px);
+            animation: neonCardPulse 4s ease-in-out infinite;
+        }
+
+        .admin-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffc107;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .admin-button {
+            background: linear-gradient(45deg, #ffc107, #ff9800);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            color: #000000;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .admin-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #ffb300, #ff8f00);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .divider {
+                display: none;
+            }
+
+            .dashboard-content-wrapper {
+                margin: 10px;
+            }
+
+            .dashboard-header-section {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .header-buttons {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-card {
+                padding: 1.5rem;
+            }
+
+            .stat-item {
+                padding: 15px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .card-icon {
+                font-size: 2.5rem;
+            }
+
+            .card-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="nav-logo">
+                <span class="logo-text">DICTUM</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#" class="nav-link active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-folder"></i>
+                    <span>Casos</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    <span>Clientes</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-calendar"></i>
+                    <span>Calendario</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Reportes</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    <span>Configuración</span>
+                </a>
+            </div>
+            <div class="nav-user">
+                <div class="user-info">
+                    <span class="user-name">Usuario</span>
+                    <span class="user-role">Abogado</span>
+                </div>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-grid">
+        <!-- Divisor -->
+        <div class="divider"></div>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content-wrapper">
+            <!-- Header Section -->
+            <div class="dashboard-header-section">
+                <div class="header-left">
+                    <h1 class="main-title">Dashboard</h1>
+                    <p class="sub-title">Bienvenido de vuelta, gestiona tus casos de manera eficiente</p>
+                </div>
+                <div class="header-buttons">
+                    <button class="header-btn">
+                        <i class="fas fa-plus"></i>
+                        Nuevo Caso
+                    </button>
+                    <button class="header-btn">
+                        <i class="fas fa-download"></i>
+                        Exportar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-title">Casos Activos</div>
+                    <div class="stat-content">
+                        <span class="stat-number">24</span>
+                        <span class="stat-change-badge stat-change-positive">+12%</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-title">Clientes</div>
+                    <div class="stat-content">
+                        <span class="stat-number">156</span>
+                        <span class="stat-change-badge stat-change-positive">+8%</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-title">Ingresos Mensuales</div>
+                    <div class="stat-content">
+                        <span class="stat-number">$45K</span>
+                        <span class="stat-change-badge stat-change-positive">+15%</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-title">Tareas Pendientes</div>
+                    <div class="stat-content">
+                        <span class="stat-number">8</span>
+                        <span class="stat-change-badge stat-change-negative">-3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cards Section -->
+            <div class="cards-grid">
+                <div class="dashboard-card" onclick="navigateToModule('casos')">
+                    <div class="card-icon">
+                        <i class="fas fa-folder-open"></i>
+                    </div>
+                    <h3 class="card-title">Gestión de Casos</h3>
+                    <p class="card-description">
+                        Administra todos tus casos legales, documentos y seguimiento de procesos.
+                        Mantén un control completo de cada expediente.
+                    </p>
+                    <button class="card-button">Acceder</button>
+                </div>
+
+                <div class="dashboard-card" onclick="navigateToModule('clientes')">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="card-title">Gestión de Clientes</h3>
+                    <p class="card-description">
+                        Gestiona tu base de datos de clientes, contactos y información personal.
+                        Mantén un historial completo de cada cliente.
+                    </p>
+                    <button class="card-button">Acceder</button>
+                </div>
+
+                <div class="dashboard-card" onclick="navigateToModule('calendario')">
+                    <div class="card-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="card-title">Calendario y Citas</h3>
+                    <p class="card-description">
+                        Organiza tu agenda, citas con clientes y audiencias.
+                        Recibe notificaciones y recordatorios automáticos.
+                    </p>
+                    <button class="card-button">Acceder</button>
+                </div>
+
+                <div class="dashboard-card" onclick="navigateToModule('reportes')">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="card-title">Reportes y Analytics</h3>
+                    <p class="card-description">
+                        Genera reportes detallados, análisis de rendimiento y estadísticas.
+                        Toma decisiones basadas en datos reales.
+                    </p>
+                    <button class="card-button">Acceder</button>
+                </div>
+            </div>
+
+            <!-- Admin Panel (solo visible para administradores) -->
+            <div class="admin-panel" id="adminPanel" style="display: none;">
+                <h3 class="admin-title">
+                    <i class="fas fa-shield-alt"></i>
+                    Panel de Administración
+                </h3>
+                <p class="admin-description">
+                    Acceso especial para administradores. Gestiona usuarios, configuraciones del sistema
+                    y monitorea el rendimiento general de la plataforma.
+                </p>
+                <button class="admin-button" onclick="navigateToAdmin()">
+                    Acceder al Panel Admin
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2" defer></script>
+    <script src="config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Supabase configuration
+            const supabaseConfig = getSupabaseConfig();
+            
+            // Initialize Supabase client
+            const supabase = initializeSupabase();
+
+            // Check authentication status
+            async function checkAuth() {
+                try {
+                    const { data: { user }, error } = await supabase.auth.getUser();
+                    
+                    if (error) {
+                        console.error('Error checking auth:', error);
+                        window.location.href = 'login.html';
+                        return;
+                    }
+
+                    if (!user) {
+                        console.log('No user found, redirecting to login');
+                        window.location.href = 'login.html';
+                        return;
+                    }
+
+                    console.log('User authenticated:', user.email);
+                    
+                    // Update UI with user info
+                    updateUserInfo(user);
+                    
+                    // Check if user is admin
+                    checkAdminStatus(user);
+                    
+                } catch (error) {
+                    console.error('Error in checkAuth:', error);
+                    window.location.href = 'login.html';
+                }
+            }
+
+            // Update user information in the UI
+            function updateUserInfo(user) {
+                const userName = document.querySelector('.user-name');
+                const userRole = document.querySelector('.user-role');
+                
+                if (userName) {
+                    userName.textContent = user.user_metadata?.full_name || user.email || 'Usuario';
+                }
+                
+                if (userRole) {
+                    userRole.textContent = user.user_metadata?.role || 'Usuario';
+                }
+            }
+
+            // Check if user is admin
+            async function checkAdminStatus(user) {
+                try {
+                    // Check if user email is in admin list
+                    const adminEmails = ['root@root.com', 'admin@dictum.com'];
+                    const isAdmin = adminEmails.includes(user.email);
+                    
+                    if (isAdmin) {
+                        console.log('User is admin, showing admin panel');
+                        const adminPanel = document.getElementById('adminPanel');
+                        if (adminPanel) {
+                            adminPanel.style.display = 'block';
+                        }
+                    }
+                    
+                } catch (error) {
+                    console.error('Error checking admin status:', error);
+                }
+            }
+
+            // Logout function
+            async function logout() {
+                try {
+                    const { error } = await supabase.auth.signOut();
+                    
+                    if (error) {
+                        console.error('Error during logout:', error);
+                        return;
+                    }
+                    
+                    console.log('Logout successful');
+                    window.location.href = 'login.html';
+                    
+                } catch (error) {
+                    console.error('Error in logout:', error);
+                }
+            }
+
+            // Navigation functions
+            function navigateToModule(module) {
+                console.log('Navigating to module:', module);
+                // Here you would implement navigation to different modules
+                alert(`Navegando a: ${module}`);
+            }
+
+            function navigateToAdmin() {
+                console.log('Navigating to admin panel');
+                // Here you would implement navigation to admin panel
+                alert('Navegando al Panel de Administración');
+            }
+
+            // Initialize dashboard
+            console.log('Dashboard initializing...');
+            checkAuth();
+
+            // Add some interactive features
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.dashboard-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
