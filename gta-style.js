@@ -132,6 +132,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función específica para asegurar que el marquee funcione
     ensureMarqueeWorks();
+
+    // Función para forzar animaciones importantes
+    forceImportantAnimations();
 });
 
 // Función para crear partículas
@@ -535,4 +538,57 @@ function ensureMarqueeWorks() {
     window.addEventListener('load', function() {
         setTimeout(restartMarquee, 1000);
     });
-} 
+}
+
+// Función para forzar animaciones importantes
+function forceImportantAnimations() {
+    // Verificar si las preferencias de movimiento reducido están activadas
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+        // Forzar animaciones importantes
+        const importantElements = [
+            '.title-main',
+            '.nav-logo span',
+            '.btn-login',
+            '.btn-login i',
+            '.download-section h2',
+            '.highlight-badge',
+            '.app-screenshot',
+            '.tech-marquee-track',
+            '.code-line'
+        ];
+        
+        importantElements.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(element => {
+                // Forzar la animación
+                element.style.animation = 'none';
+                element.offsetHeight; // Trigger reflow
+                
+                // Restaurar animación específica
+                if (selector === '.title-main' || selector === '.nav-logo span' || selector === '.btn-login' || selector === '.btn-login i' || selector === '.download-section h2') {
+                    element.style.animation = 'gradientShift 3s ease-in-out infinite';
+                } else if (selector === '.highlight-badge') {
+                    element.style.animation = 'pulse 2s ease-in-out infinite';
+                } else if (selector === '.app-screenshot') {
+                    element.style.animation = 'float3D 4s ease-in-out infinite';
+                } else if (selector === '.tech-marquee-track') {
+                    element.style.animation = 'marquee 30s linear infinite';
+                } else if (selector === '.code-line') {
+                    element.style.animation = 'fadeInUp 0.5s ease forwards';
+                }
+            });
+        });
+    }
+}
+
+// Inicializar animaciones forzadas
+document.addEventListener('DOMContentLoaded', function() {
+    forceImportantAnimations();
+    
+    // También forzar después de que la página esté completamente cargada
+    window.addEventListener('load', function() {
+        setTimeout(forceImportantAnimations, 1000);
+    });
+}); 

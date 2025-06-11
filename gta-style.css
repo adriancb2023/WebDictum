@@ -1299,6 +1299,7 @@ body {
 
 /* Soporte para preferencias de movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
+    /* Solo reducir animaciones de scroll, no las visuales importantes */
     .scroll-animations *,
     .section-fade,
     .stagger-animation {
@@ -1319,15 +1320,304 @@ body {
         animation: none;
     }
     
-    /* Excluir el marquee de las preferencias de movimiento reducido */
-    .tech-marquee-track {
-        animation-duration: 30s !important;
-        animation-iteration-count: infinite !important;
-        -webkit-animation-duration: 30s !important;
-        -webkit-animation-iteration-count: infinite !important;
-        -moz-animation-duration: 30s !important;
-        -moz-animation-iteration-count: infinite !important;
-        -o-animation-duration: 30s !important;
-        -o-animation-iteration-count: infinite !important;
+    /* Excluir animaciones importantes de las preferencias de movimiento reducido */
+    .title-main,
+    .nav-logo span,
+    .btn-login,
+    .btn-login i,
+    .download-section h2,
+    .highlight-badge,
+    .app-screenshot,
+    .tech-marquee-track,
+    .code-line,
+    .floating-element,
+    .particle {
+        animation-duration: unset !important;
+        animation-iteration-count: unset !important;
+        transition-duration: unset !important;
     }
+    
+    /* Mantener animaciones específicas */
+    .title-main {
+        animation: gradientShift 3s ease-in-out infinite !important;
+    }
+    
+    .nav-logo span {
+        animation: gradientShift 3s ease-in-out infinite !important;
+    }
+    
+    .btn-login {
+        animation: gradientShift 3s ease-in-out infinite !important;
+    }
+    
+    .btn-login i {
+        animation: gradientShift 3s ease-in-out infinite !important;
+    }
+    
+    .download-section h2 {
+        animation: gradientShift 3s ease-in-out infinite !important;
+    }
+    
+    .highlight-badge {
+        animation: pulse 2s ease-in-out infinite !important;
+    }
+    
+    .app-screenshot {
+        animation: float3D 4s ease-in-out infinite !important;
+    }
+    
+    .tech-marquee-track {
+        animation: marquee 30s linear infinite !important;
+        -webkit-animation: marquee 30s linear infinite !important;
+        -moz-animation: marquee 30s linear infinite !important;
+        -o-animation: marquee 30s linear infinite !important;
+    }
+    
+    .code-line {
+        animation: fadeInUp 0.5s ease forwards !important;
+    }
+    
+    .floating-element {
+        animation: floatAround 15s ease-in-out infinite !important;
+    }
+    
+    .particle {
+        animation: float 5s linear infinite !important;
+    }
+}
+
+/* Botón de Iniciar Sesión con Animated Gradient Text */
+.btn-login {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #ff6b6b);
+    background-size: 300% 300%;
+    animation: gradientShift 3s ease-in-out infinite;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: 160px;
+    height: 50px;
+    font-family: 'Inter', sans-serif;
+}
+
+.btn-login::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-login::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(78, 205, 196, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.btn-login:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 10px 25px rgba(78, 205, 196, 0.3),
+        0 0 20px rgba(78, 205, 196, 0.2),
+        inset 0 0 20px rgba(78, 205, 196, 0.1);
+    border-color: rgba(78, 205, 196, 0.5);
+    background-image: linear-gradient(45deg, #4ecdc4, #45b7d1, #ff6b6b, #4ecdc4);
+}
+
+.btn-login:hover::before {
+    left: 100%;
+}
+
+.btn-login:hover::after {
+    width: 200px;
+    height: 200px;
+}
+
+.btn-login:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(78, 205, 196, 0.2);
+}
+
+/* Icono para el botón de login */
+.btn-login i {
+    font-size: 1.1rem;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease-in-out infinite;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover i {
+    transform: scale(1.1);
+    animation: gradientShift 1.5s ease-in-out infinite;
+}
+
+/* Efecto de partículas en hover */
+.btn-login:hover {
+    animation: gradientShift 1.5s ease-in-out infinite;
+}
+
+/* Animación de gradiente mejorada */
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 100% 50%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    75% {
+        background-position: 0% 100%;
+    }
+}
+
+/* Efecto de focus para accesibilidad */
+.btn-login:focus {
+    outline: 2px solid rgba(78, 205, 196, 0.8);
+    outline-offset: 2px;
+}
+
+/* Responsive para el botón de login */
+@media (max-width: 768px) {
+    .btn-login {
+        min-width: 140px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+        height: 45px;
+    }
+    
+    .btn-login:hover::after {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-login {
+        min-width: 120px;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+        height: 40px;
+    }
+    
+    .btn-login i {
+        font-size: 1rem;
+    }
+    
+    .btn-login:hover::after {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Asegurar que las animaciones importantes se muestren */
+.title-main,
+.nav-logo span,
+.btn-login,
+.btn-login i,
+.download-section h2,
+.highlight-badge,
+.app-screenshot,
+.tech-marquee-track,
+.code-line {
+    animation-play-state: running !important;
+    -webkit-animation-play-state: running !important;
+    -moz-animation-play-state: running !important;
+    -o-animation-play-state: running !important;
+}
+
+/* Forzar animaciones específicas */
+.title-main {
+    animation: gradientShift 3s ease-in-out infinite !important;
+    -webkit-animation: gradientShift 3s ease-in-out infinite !important;
+    -moz-animation: gradientShift 3s ease-in-out infinite !important;
+    -o-animation: gradientShift 3s ease-in-out infinite !important;
+}
+
+.nav-logo span {
+    animation: gradientShift 3s ease-in-out infinite !important;
+    -webkit-animation: gradientShift 3s ease-in-out infinite !important;
+    -moz-animation: gradientShift 3s ease-in-out infinite !important;
+    -o-animation: gradientShift 3s ease-in-out infinite !important;
+}
+
+.btn-login {
+    animation: gradientShift 3s ease-in-out infinite !important;
+    -webkit-animation: gradientShift 3s ease-in-out infinite !important;
+    -moz-animation: gradientShift 3s ease-in-out infinite !important;
+    -o-animation: gradientShift 3s ease-in-out infinite !important;
+}
+
+.btn-login i {
+    animation: gradientShift 3s ease-in-out infinite !important;
+    -webkit-animation: gradientShift 3s ease-in-out infinite !important;
+    -moz-animation: gradientShift 3s ease-in-out infinite !important;
+    -o-animation: gradientShift 3s ease-in-out infinite !important;
+}
+
+.download-section h2 {
+    animation: gradientShift 3s ease-in-out infinite !important;
+    -webkit-animation: gradientShift 3s ease-in-out infinite !important;
+    -moz-animation: gradientShift 3s ease-in-out infinite !important;
+    -o-animation: gradientShift 3s ease-in-out infinite !important;
+}
+
+.highlight-badge {
+    animation: pulse 2s ease-in-out infinite !important;
+    -webkit-animation: pulse 2s ease-in-out infinite !important;
+    -moz-animation: pulse 2s ease-in-out infinite !important;
+    -o-animation: pulse 2s ease-in-out infinite !important;
+}
+
+.app-screenshot {
+    animation: float3D 4s ease-in-out infinite !important;
+    -webkit-animation: float3D 4s ease-in-out infinite !important;
+    -moz-animation: float3D 4s ease-in-out infinite !important;
+    -o-animation: float3D 4s ease-in-out infinite !important;
+}
+
+.tech-marquee-track {
+    animation: marquee 30s linear infinite !important;
+    -webkit-animation: marquee 30s linear infinite !important;
+    -moz-animation: marquee 30s linear infinite !important;
+    -o-animation: marquee 30s linear infinite !important;
+}
+
+.code-line {
+    animation: fadeInUp 0.5s ease forwards !important;
+    -webkit-animation: fadeInUp 0.5s ease forwards !important;
+    -moz-animation: fadeInUp 0.5s ease forwards !important;
+    -o-animation: fadeInUp 0.5s ease forwards !important;
 } 
