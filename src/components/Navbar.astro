@@ -1,0 +1,117 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <a href="/"><span>Dictum</span></a>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="#hero">Inicio</a></li>
+      <li><a href="#features">Funcionalidades</a></li>
+      <li><a href="#technologies">Tecnologías</a></li>
+      <li><a href="#testimonials">Testimonios</a></li>
+    </ul>
+    <div class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /* Navigation */
+  .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .nav-logo span {
+      font-size: 2rem;
+      font-weight: 900;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 3s ease-in-out infinite;
+  }
+
+  .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+  }
+
+  .nav-menu a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+  }
+
+  .nav-menu a:hover {
+      color: #4ecdc4;
+      text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+  }
+
+  .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      transition: width 0.3s ease;
+  }
+
+  .nav-menu a:hover::after {
+      width: 100%;
+  }
+
+  .nav-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+  }
+
+  .nav-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #ffffff;
+      margin: 3px 0;
+      transition: 0.3s;
+  }
+
+  /* Responsive Design for Navbar */
+  @media (max-width: 768px) {
+      .nav-menu {
+          display: none;
+      }
+      
+      .nav-toggle {
+          display: flex;
+      }
+  }
+
+  @media (max-width: 480px) {
+      .container {
+          padding: 0 15px;
+      }
+  }
+</style> 
