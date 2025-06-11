@@ -257,6 +257,140 @@ import ScrollAnimations from '../components/ScrollAnimations.jsx';
     </div>
   </section>
 
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials-section section-fade">
+    <div class="container">
+      <h2 class="section-title">Lo que nuestros usuarios dicen</h2>
+      <div class="testimonials-grid">
+        <!-- Testimonio 1: Zegios -->
+        <div class="testimonial-card hover-lift">
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">Z</div>
+            <div>
+              <h3 class="reviewer-name">Zegios</h3>
+              <p class="reviewer-role">Tester de la aplicación</p>
+            </div>
+          </div>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-quote">
+            "Dictum ha resultado ser una aplicación solida. Su sistema de busqueda es facil de usar."
+          </p>
+        </div>
+
+        <!-- Testimonio 2: Magu4 -->
+        <div class="testimonial-card hover-lift">
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">M</div>
+            <div>
+              <h3 class="reviewer-name">Magu4</h3>
+              <p class="reviewer-role">Tester de la aplicación</p>
+            </div>
+          </div>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-quote">
+            "La gestión de casos es impecable. Todo organizado y accesible, justo lo que ofrece."
+          </p>
+        </div>
+
+        <!-- Testimonio 3: taeyyyy -->
+        <div class="testimonial-card hover-lift">
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">T</div>
+            <div>
+              <h3 class="reviewer-name">taeyyyy</h3>
+              <p class="reviewer-role">Tester de la aplicación</p>
+            </div>
+          </div>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-quote">
+            "Una interfaz moderna y fluida. Es un placer haber ayudado con la traduccion de la aplicación."
+          </p>
+        </div>
+
+        <!-- Testimonio 4: ๖̶̶̶ ζ͜͡ elalias -->
+        <div class="testimonial-card hover-lift">
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">E</div>
+            <div>
+              <h3 class="reviewer-name">๖̶̶̶ ζ͜͡ elalias</h3>
+              <p class="reviewer-role">Tester de la aplicación</p>
+            </div>
+          </div>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-quote">
+            "El sistema de guardado de archivos en la nube es facil de usar."
+          </p>
+        </div>
+
+        <!-- Testimonio 5: Nuevo Tester - Abogado -->
+        <div class="testimonial-card hover-lift">
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">A</div>
+            <div>
+              <h3 class="reviewer-name">Ana García</h3>
+              <p class="reviewer-role">Abogada Corporativa</p>
+            </div>
+          </div>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-quote">
+            "Los reportes personalizados me dan una visión clara de mi práctica. Es como tener un consultor siempre a mano."
+          </p>
+        </div>
+
+        <!-- Testimonio 6: Nuevo Tester - Secretario Legal -->
+        <div class="testimonial-card hover-lift">
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">J</div>
+            <div>
+              <h3 class="reviewer-name">Javier Soto</h3>
+              <p class="reviewer-role">Secretario Legal</p>
+            </div>
+          </div>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-quote">
+            "La gestión de clientes ha simplificado mi día a día. Todo en un solo lugar y muy fácil de usar."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Download Section -->
   <section id="descargar" class="download-section section-fade">
     <div class="container">
@@ -1456,6 +1590,130 @@ import ScrollAnimations from '../components/ScrollAnimations.jsx';
       
       .scroll-progress {
           height: 2px;
+      }
+  }
+
+  /* Testimonials Section */
+  .testimonials-section {
+      padding: 6rem 0;
+      background: #000000;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .testimonials-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+          radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 40%),
+          radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.01) 0%, transparent 40%);
+      animation: subtleMove 45s ease-in-out infinite reverse;
+      pointer-events: none;
+  }
+
+  .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      justify-content: center;
+      align-items: stretch;
+  }
+
+  .testimonial-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+  }
+
+  .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(78, 205, 196, 0.2);
+  }
+
+  .reviewer-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+  }
+
+  .reviewer-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4); /* Gradient for avatars */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-right: 1rem;
+      flex-shrink: 0;
+  }
+
+  .reviewer-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+  }
+
+  .reviewer-role {
+      font-size: 0.8rem;
+      color: #cccccc;
+  }
+
+  .stars {
+      margin-bottom: 1rem;
+  }
+
+  .stars .fa-star {
+      color: #ffd700; /* Gold color for stars */
+      font-size: 0.9rem;
+      margin-right: 0.2rem;
+  }
+
+  .testimonial-quote {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #cccccc;
+      font-style: italic;
+  }
+
+  /* Responsive Adjustments for Testimonials */
+  @media (max-width: 768px) {
+      .testimonials-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+      }
+      .testimonial-card {
+          padding: 1.5rem;
+      }
+      .reviewer-avatar {
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
+      }
+      .reviewer-name {
+          font-size: 1rem;
+      }
+      .reviewer-role {
+          font-size: 0.7rem;
+      }
+      .stars .fa-star {
+          font-size: 0.8rem;
+      }
+      .testimonial-quote {
+          font-size: 0.9rem;
       }
   }
 </style>
