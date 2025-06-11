@@ -86,6 +86,49 @@
             padding: 3rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Border Beam Effect */
+        .login-form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(78, 205, 196, 0.3),
+                rgba(255, 107, 107, 0.3),
+                rgba(78, 205, 196, 0.3),
+                transparent
+            );
+            background-size: 400% 400%;
+            animation: borderBeam 3s ease-in-out infinite;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+        }
+
+        @keyframes borderBeam {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Ajustar el contenido del formulario para el efecto */
+        .login-form-container > * {
+            position: relative;
+            z-index: 1;
         }
 
         .form-group {
@@ -273,7 +316,6 @@
             <div class="login-text">
                 <div class="login-title">
                     <span class="login-title-main">DICTUM</span>
-                    <span class="login-title-subtitle">Inicia Sesión</span>
                 </div>
                 <p class="login-description">
                     Accede a tu cuenta y gestiona todos tus casos legales de manera eficiente. 
