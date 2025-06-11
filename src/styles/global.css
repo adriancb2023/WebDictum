@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos personalizados para el tema GTA */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+/* Variables CSS personalizadas */
+:root {
+  --gta-font-family: 'Righteous', cursive;
+  --gta-blue: #00b0ff;
+  --gta-purple: #ae00ff;
+  --gta-red: #ff0000;
+  --gta-yellow: #ffea00;
+  --gta-gray-dark: #1a1a1a;
+  --gta-gray-medium: #333333;
+  --gta-gray-light: #cccccc;
+}
+
+/* Clases personalizadas */
+.gta-title {
+  font-family: var(--gta-font-family);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.dark-theme {
+  background: #000000;
+  color: #ffffff;
+}
+
+.light-theme {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Animaciones personalizadas */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+}
+
+@keyframes subtleMove {
+  0%, 100% { 
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+  50% { 
+    transform: translate(-1%, -1%);
+    opacity: 0.8;
+  }
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    opacity: 0.3;
+    box-shadow: 
+      0 0 5px rgba(255, 107, 107, 0.3),
+      0 0 10px rgba(78, 205, 196, 0.3),
+      0 0 15px rgba(69, 183, 209, 0.3);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 
+      0 0 10px rgba(255, 107, 107, 0.5),
+      0 0 20px rgba(78, 205, 196, 0.5),
+      0 0 30px rgba(69, 183, 209, 0.5);
+  }
+}
+
+@keyframes float3D {
+  0%, 100% {
+    transform: rotateY(-5deg) rotateX(5deg) translateZ(20px) translateY(0px);
+  }
+  50% {
+    transform: rotateY(-8deg) rotateX(8deg) translateZ(30px) translateY(-10px);
+  }
+}
+
+@keyframes borderGlow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Estilos para modo oscuro */
+.dark-theme {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* Estilos para modo claro */
+.light-theme {
+  background: #ffffff;
+  color: #000000;
+} 

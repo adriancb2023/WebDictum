@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabase';
 export default function Dashboard() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [darkMode, setDarkMode] = useState(true);
   const [stats, setStats] = useState({
     totalUsers: 0,
     activeSessions: 0,
@@ -13,7 +14,19 @@ export default function Dashboard() {
   useEffect(() => {
     checkUser();
     getStats();
+    // Cargar preferencia de tema desde localStorage
+    const savedTheme = localStorage.getItem('darkMode');
+    if (savedTheme !== null) {
+      setDarkMode(JSON.parse(savedTheme));
+    }
   }, []);
+
+  useEffect(() => {
+    // Guardar preferencia de tema en localStorage
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+    // Aplicar tema al body
+    document.body.className = darkMode ? 'dark-theme' : 'light-theme';
+  }, [darkMode]);
 
   const checkUser = async () => {
     try {
@@ -49,32 +62,74 @@ export default function Dashboard() {
     }
   };
 
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
+
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+      <div className={`min-h-screen flex items-center justify-center ${darkMode ? 'bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900' : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'}`}>
+        <div className="relative">
+          <div className="animate-spin rounded-full h-32 w-32 border-4 border-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 bg-clip-border">
+            <div className="absolute inset-2 rounded-full bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900"></div>
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className={`min-h-screen transition-all duration-500 ${darkMode ? 'bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white' : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 text-gray-900'}`}>
+      {/* Header con estilo único */}
+      <header className={`relative overflow-hidden ${darkMode ? 'bg-black/20 backdrop-blur-md border-b border-purple-500/30' : 'bg-white/80 backdrop-blur-md border-b border-purple-200'}`}>
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-pink-600/20 to-blue-600/20"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-gray-900">WebDictum Dashboard</h1>
-            </div>
             <div className="flex items-center space-x-4">
-              <span className="text-gray-600">
-                Bienvenido, {user?.email}
-              </span>
+              <div className="relative">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-xl flex items-center justify-center animate-pulse">
+                  <i className="fas fa-gavel text-white text-xl"></i>
+                </div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-xl blur opacity-30 animate-pulse"></div>
+              </div>
+              <div>
+                <h1 className={`text-3xl font-bold gta-title ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                  WebDictum
+                </h1>
+                <p className={`text-sm ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>
+                  Panel de Control
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              {/* Toggle de tema */}
+              <button
+                onClick={toggleTheme}
+                className={`relative p-2 rounded-xl transition-all duration-300 ${darkMode ? 'bg-purple-600/20 hover:bg-purple-600/30' : 'bg-purple-100 hover:bg-purple-200'}`}
+              >
+                {darkMode ? (
+                  <i className="fas fa-sun text-yellow-400 text-lg"></i>
+                ) : (
+                  <i className="fas fa-moon text-purple-600 text-lg"></i>
+                )}
+              </button>
+              
+              <div className={`px-4 py-2 rounded-xl ${darkMode ? 'bg-purple-600/20 border border-purple-500/30' : 'bg-white/50 border border-purple-200'}`}>
+                <span className={`text-sm ${darkMode ? 'text-purple-300' : 'text-purple-700'}`}>
+                  {user?.email}
+                </span>
+              </div>
+              
               <button
                 onClick={handleLogout}
-                className="bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700"
+                className="relative px-6 py-2 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-xl font-medium hover:from-red-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105"
               >
-                Cerrar Sesión
+                <span className="relative z-10">Cerrar Sesión</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 rounded-xl blur opacity-30"></div>
               </button>
             </div>
           </div>
@@ -83,75 +138,78 @@ export default function Dashboard() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats Cards */}
+        {/* Stats Cards con estilo único */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-8">
-          <div className="bg-white overflow-hidden shadow rounded-lg">
-            <div className="p-5">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-                    </svg>
+          {/* Card 1 - Total Usuarios */}
+          <div className={`relative group ${darkMode ? 'bg-black/20 backdrop-blur-md border border-purple-500/30' : 'bg-white/80 backdrop-blur-md border border-purple-200'} rounded-2xl overflow-hidden transition-all duration-300 hover:transform hover:scale-105`}>
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10"></div>
+            <div className="relative p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                  <div className="relative">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
+                      <i className="fas fa-users text-white text-lg"></i>
+                    </div>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur opacity-30"></div>
                   </div>
-                </div>
-                <div className="ml-5 w-0 flex-1">
-                  <dl>
-                    <dt className="text-sm font-medium text-gray-500 truncate">
+                  <div>
+                    <p className={`text-sm font-medium ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>
                       Total de Usuarios
-                    </dt>
-                    <dd className="text-lg font-medium text-gray-900">
+                    </p>
+                    <p className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                       {stats.totalUsers.toLocaleString()}
-                    </dd>
-                  </dl>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-white overflow-hidden shadow rounded-lg">
-            <div className="p-5">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-green-500 rounded-md flex items-center justify-center">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
+          {/* Card 2 - Sesiones Activas */}
+          <div className={`relative group ${darkMode ? 'bg-black/20 backdrop-blur-md border border-purple-500/30' : 'bg-white/80 backdrop-blur-md border border-purple-200'} rounded-2xl overflow-hidden transition-all duration-300 hover:transform hover:scale-105`}>
+            <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-emerald-500/10 to-teal-500/10"></div>
+            <div className="relative p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                  <div className="relative">
+                    <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
+                      <i className="fas fa-signal text-white text-lg"></i>
+                    </div>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl blur opacity-30"></div>
                   </div>
-                </div>
-                <div className="ml-5 w-0 flex-1">
-                  <dl>
-                    <dt className="text-sm font-medium text-gray-500 truncate">
+                  <div>
+                    <p className={`text-sm font-medium ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>
                       Sesiones Activas
-                    </dt>
-                    <dd className="text-lg font-medium text-gray-900">
+                    </p>
+                    <p className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                       {stats.activeSessions}
-                    </dd>
-                  </dl>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-white overflow-hidden shadow rounded-lg">
-            <div className="p-5">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-purple-500 rounded-md flex items-center justify-center">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                    </svg>
+          {/* Card 3 - Último Acceso */}
+          <div className={`relative group ${darkMode ? 'bg-black/20 backdrop-blur-md border border-purple-500/30' : 'bg-white/80 backdrop-blur-md border border-purple-200'} rounded-2xl overflow-hidden transition-all duration-300 hover:transform hover:scale-105`}>
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-red-500/10"></div>
+            <div className="relative p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                  <div className="relative">
+                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                      <i className="fas fa-clock text-white text-lg"></i>
+                    </div>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl blur opacity-30"></div>
                   </div>
-                </div>
-                <div className="ml-5 w-0 flex-1">
-                  <dl>
-                    <dt className="text-sm font-medium text-gray-500 truncate">
+                  <div>
+                    <p className={`text-sm font-medium ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>
                       Último Acceso
-                    </dt>
-                    <dd className="text-lg font-medium text-gray-900">
+                    </p>
+                    <p className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                       {stats.lastLogin}
-                    </dd>
-                  </dl>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -160,77 +218,107 @@ export default function Dashboard() {
 
         {/* Main Dashboard Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Recent Activity */}
-          <div className="bg-white shadow rounded-lg">
-            <div className="px-4 py-5 sm:p-6">
-              <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
-                Actividad Reciente
-              </h3>
+          {/* Actividad Reciente */}
+          <div className={`relative ${darkMode ? 'bg-black/20 backdrop-blur-md border border-purple-500/30' : 'bg-white/80 backdrop-blur-md border border-purple-200'} rounded-2xl overflow-hidden`}>
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5"></div>
+            <div className="relative px-6 py-6">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                  <i className="fas fa-chart-line text-white text-sm"></i>
+                </div>
+                <h3 className={`text-xl font-bold gta-title ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                  Actividad Reciente
+                </h3>
+              </div>
               <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span className="text-sm text-gray-600">Usuario registrado exitosamente</span>
-                  <span className="text-xs text-gray-400">hace 2 horas</span>
+                <div className="flex items-center space-x-4 p-3 rounded-xl bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20">
+                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                  <span className={`text-sm ${darkMode ? 'text-green-300' : 'text-green-700'}`}>Usuario registrado exitosamente</span>
+                  <span className={`text-xs ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>hace 2 horas</span>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span className="text-sm text-gray-600">Nueva sesión iniciada</span>
-                  <span className="text-xs text-gray-400">hace 5 horas</span>
+                <div className="flex items-center space-x-4 p-3 rounded-xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20">
+                  <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                  <span className={`text-sm ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>Nueva sesión iniciada</span>
+                  <span className={`text-xs ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>hace 5 horas</span>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  <span className="text-sm text-gray-600">Actualización de perfil</span>
-                  <span className="text-xs text-gray-400">hace 1 día</span>
+                <div className="flex items-center space-x-4 p-3 rounded-xl bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20">
+                  <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
+                  <span className={`text-sm ${darkMode ? 'text-yellow-300' : 'text-yellow-700'}`}>Actualización de perfil</span>
+                  <span className={`text-xs ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>hace 1 día</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Quick Actions */}
-          <div className="bg-white shadow rounded-lg">
-            <div className="px-4 py-5 sm:p-6">
-              <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
-                Acciones Rápidas
-              </h3>
-              <div className="space-y-3">
-                <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700">
-                  Editar Perfil
+          {/* Acciones Rápidas */}
+          <div className={`relative ${darkMode ? 'bg-black/20 backdrop-blur-md border border-purple-500/30' : 'bg-white/80 backdrop-blur-md border border-purple-200'} rounded-2xl overflow-hidden`}>
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-red-500/5"></div>
+            <div className="relative px-6 py-6">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                  <i className="fas fa-bolt text-white text-sm"></i>
+                </div>
+                <h3 className={`text-xl font-bold gta-title ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                  Acciones Rápidas
+                </h3>
+              </div>
+              <div className="space-y-4">
+                <button className="w-full relative px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-medium hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105">
+                  <span className="relative z-10 flex items-center justify-center space-x-2">
+                    <i className="fas fa-user-edit"></i>
+                    <span>Editar Perfil</span>
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur opacity-30"></div>
                 </button>
-                <button className="w-full bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700">
-                  Crear Nuevo Proyecto
+                <button className="w-full relative px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl font-medium hover:from-green-600 hover:to-emerald-600 transition-all duration-300 transform hover:scale-105">
+                  <span className="relative z-10 flex items-center justify-center space-x-2">
+                    <i className="fas fa-plus-circle"></i>
+                    <span>Crear Nuevo Proyecto</span>
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl blur opacity-30"></div>
                 </button>
-                <button className="w-full bg-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-purple-700">
-                  Ver Reportes
+                <button className="w-full relative px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105">
+                  <span className="relative z-10 flex items-center justify-center space-x-2">
+                    <i className="fas fa-chart-bar"></i>
+                    <span>Ver Reportes</span>
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl blur opacity-30"></div>
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* User Info */}
-        <div className="mt-8 bg-white shadow rounded-lg">
-          <div className="px-4 py-5 sm:p-6">
-            <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
-              Información del Usuario
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Email</label>
-                <p className="mt-1 text-sm text-gray-900">{user?.email}</p>
+        {/* Información del Usuario */}
+        <div className={`mt-8 relative ${darkMode ? 'bg-black/20 backdrop-blur-md border border-purple-500/30' : 'bg-white/80 backdrop-blur-md border border-purple-200'} rounded-2xl overflow-hidden`}>
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-pink-500/5"></div>
+          <div className="relative px-6 py-6">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
+                <i className="fas fa-user-circle text-white text-sm"></i>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">ID de Usuario</label>
-                <p className="mt-1 text-sm text-gray-900">{user?.id}</p>
+              <h3 className={`text-xl font-bold gta-title ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                Información del Usuario
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className={`p-4 rounded-xl ${darkMode ? 'bg-black/30 border border-purple-500/20' : 'bg-white/50 border border-purple-200'}`}>
+                <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>Email</label>
+                <p className={`text-sm ${darkMode ? 'text-white' : 'text-gray-900'}`}>{user?.email}</p>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Fecha de Creación</label>
-                <p className="mt-1 text-sm text-gray-900">
+              <div className={`p-4 rounded-xl ${darkMode ? 'bg-black/30 border border-purple-500/20' : 'bg-white/50 border border-purple-200'}`}>
+                <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>ID de Usuario</label>
+                <p className={`text-sm ${darkMode ? 'text-white' : 'text-gray-900'}`}>{user?.id}</p>
+              </div>
+              <div className={`p-4 rounded-xl ${darkMode ? 'bg-black/30 border border-purple-500/20' : 'bg-white/50 border border-purple-200'}`}>
+                <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>Fecha de Creación</label>
+                <p className={`text-sm ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                   {user?.created_at ? new Date(user.created_at).toLocaleDateString('es-ES') : 'N/A'}
                 </p>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Última Actualización</label>
-                <p className="mt-1 text-sm text-gray-900">
+              <div className={`p-4 rounded-xl ${darkMode ? 'bg-black/30 border border-purple-500/20' : 'bg-white/50 border border-purple-200'}`}>
+                <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>Última Actualización</label>
+                <p className={`text-sm ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                   {user?.updated_at ? new Date(user.updated_at).toLocaleDateString('es-ES') : 'N/A'}
                 </p>
               </div>
@@ -238,6 +326,25 @@ export default function Dashboard() {
           </div>
         </div>
       </main>
+
+      <style jsx>{`
+        .gta-title {
+          font-family: 'Righteous', cursive;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .dark-theme {
+          background: #000000;
+          color: #ffffff;
+        }
+        
+        .light-theme {
+          background: #ffffff;
+          color: #000000;
+        }
+      `}</style>
     </div>
   );
 } 
