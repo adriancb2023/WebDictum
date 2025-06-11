@@ -9,7 +9,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
+<body class="scroll-animations">
+    <!-- Barra de progreso de scroll -->
+    <div class="scroll-progress"></div>
+
+    <!-- Indicador de scroll lateral -->
+    <div class="scroll-indicator">
+        <div class="scroll-dot" data-section="inicio"></div>
+        <div class="scroll-dot" data-section="personajes"></div>
+        <div class="scroll-dot" data-section="tecnologia"></div>
+        <div class="scroll-dot" data-section="descargar"></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -21,7 +32,6 @@
                 <li><a href="#personajes">Funcionalidades</a></li>
                 <li><a href="#tecnologia">Tecnología</a></li>
                 <li><a href="#descargar">Descargar</a></li>
-                <li><a href="#soporte">Soporte</a></li>
             </ul>
             <div class="nav-toggle">
                 <span></span>
@@ -32,7 +42,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero">
+    <section id="inicio" class="hero hero-scroll-effect">
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="hero-title">
@@ -53,8 +63,8 @@
                     Diseñada para profesionales que buscan eficiencia, seguridad y una experiencia de usuario excepcional.
                 </p>
                 <div class="hero-buttons">
-                    <button class="btn btn-primary">Descargar</button>
-                    <button class="btn btn-shimmer" onclick="window.location.href='login.html'">
+                    <button class="btn btn-primary hover-lift">Descargar</button>
+                    <button class="btn btn-shimmer hover-lift" onclick="window.location.href='login.html'">
                         <span class="shimmer-text">Iniciar Sesión</span>
                         <div class="shimmer-effect"></div>
                     </button>
@@ -66,15 +76,21 @@
                 </div>
             </div>
         </div>
+
+        <!-- Indicador de scroll hacia abajo -->
+        <div class="scroll-down-hint" data-target="#personajes">
+            <div class="scroll-down-text">Deslizar</div>
+            <div class="scroll-down-arrow"></div>
+        </div>
     </section>
 
     <!-- Features Section (Personajes) -->
-    <section id="personajes" class="features-section">
+    <section id="personajes" class="features-section section-fade">
         <div class="container">
             <h2 class="section-title">Funcionalidades Principales</h2>
             
             <!-- Búsqueda Avanzada - Funcionalidad Única -->
-            <div class="feature-character">
+            <div class="feature-character stagger-animation">
                 <div class="character-content">
                     <div class="character-text">
                         <h3>Búsqueda Avanzada</h3>
@@ -88,16 +104,16 @@
                         </div>
                     </div>
                     <div class="character-visual">
-                        <img src="Recursos/Busqueda/busquedaClaro.png" alt="Búsqueda Avanzada" class="character-image">
+                        <img src="Recursos/Busqueda/busquedaClaro.png" alt="Búsqueda Avanzada" class="character-image hover-lift">
                     </div>
                 </div>
             </div>
 
             <!-- Gestión de Casos -->
-            <div class="feature-character">
+            <div class="feature-character stagger-animation">
                 <div class="character-content reverse">
                     <div class="character-visual">
-                        <img src="Recursos/Casos/casosclaro.png" alt="Gestión de Casos" class="character-image">
+                        <img src="Recursos/Casos/casosclaro.png" alt="Gestión de Casos" class="character-image hover-lift">
                     </div>
                     <div class="character-text">
                         <h3>Gestión de Casos</h3>
@@ -110,7 +126,7 @@
             </div>
 
             <!-- Gestión de Clientes -->
-            <div class="feature-character">
+            <div class="feature-character stagger-animation">
                 <div class="character-content">
                     <div class="character-text">
                         <h3>Gestión de Clientes</h3>
@@ -120,16 +136,16 @@
                         </div>
                     </div>
                     <div class="character-visual">
-                        <img src="Recursos/Clientes/Clientes.png" alt="Gestión de Clientes" class="character-image">
+                        <img src="Recursos/Clientes/Clientes.png" alt="Gestión de Clientes" class="character-image hover-lift">
                     </div>
                 </div>
             </div>
 
             <!-- Gestión de Documentos -->
-            <div class="feature-character">
+            <div class="feature-character stagger-animation">
                 <div class="character-content reverse">
                     <div class="character-visual">
-                        <img src="Recursos/Documentos/documentosclaro.png" alt="Gestión de Documentos" class="character-image">
+                        <img src="Recursos/Documentos/documentosclaro.png" alt="Gestión de Documentos" class="character-image hover-lift">
                     </div>
                     <div class="character-text">
                         <h3>Gestión de Documentos</h3>
@@ -144,7 +160,7 @@
     </section>
 
     <!-- Technology Section -->
-    <section id="tecnologia" class="technology-section">
+    <section id="tecnologia" class="technology-section section-fade">
         <div class="container">
             <div class="tech-content">
                 <div class="tech-text">
@@ -264,12 +280,12 @@
     </section>
 
     <!-- Download Section -->
-    <section id="descargar" class="download-section">
+    <section id="descargar" class="download-section section-fade">
         <div class="container">
             <h2>Descarga Dictum</h2>
             <p>Disponible para Windows</p>
             <div class="download-buttons">
-                <a href="#" class="download-btn">
+                <a href="#" class="download-btn hover-lift">
                     <i class="fab fa-windows"></i>
                     <div>
                         <span>Descargar para</span>

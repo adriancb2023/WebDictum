@@ -117,6 +117,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Animación de código
     animateCodeLines();
+
+    // Inicializar animaciones de scroll
+    initializeScrollAnimations();
+    
+    // Inicializar indicadores de scroll
+    initializeScrollIndicators();
+    
+    // Inicializar barra de progreso
+    initializeScrollProgress();
+    
+    // Inicializar observadores de intersección
+    initializeIntersectionObservers();
+
+    // Función específica para asegurar que el marquee funcione
+    ensureMarqueeWorks();
 });
 
 // Función para crear partículas
@@ -294,4 +309,230 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
 
 images.forEach(img => {
     imageObserver.observe(img);
-}); 
+});
+
+// Nuevas funciones para animaciones de scroll (compatibles con versión actual)
+function initializeScrollAnimations() {
+    // Efectos de scroll para el hero
+    const hero = document.querySelector('.hero-scroll-effect');
+    const heroContent = document.querySelector('.hero-content');
+    
+    if (hero && heroContent) {
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const heroHeight = hero.offsetHeight;
+            
+            if (scrolled > 0 && scrolled < heroHeight) {
+                const progress = scrolled / heroHeight;
+                
+                if (progress > 0.1) {
+                    hero.classList.add('scrolling');
+                } else {
+                    hero.classList.remove('scrolling');
+                }
+                
+                // Parallax suave
+                const rate = scrolled * -0.3;
+                heroContent.style.transform = `translateY(${rate}px)`;
+            }
+        });
+    }
+}
+
+function initializeScrollIndicators() {
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    const scrollDots = document.querySelectorAll('.scroll-dot');
+    const sections = ['inicio', 'personajes', 'tecnologia', 'descargar'];
+    
+    // Mostrar indicador después de la carga inicial
+    setTimeout(() => {
+        if (scrollIndicator) {
+            scrollIndicator.classList.add('visible');
+        }
+    }, 2000);
+    
+    // Actualizar punto activo basado en la posición del scroll
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        
+        sections.forEach((sectionId, index) => {
+            const section = document.getElementById(sectionId);
+            if (section && scrollDots[index]) {
+                const sectionTop = section.offsetTop - 100;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                
+                if (scrolled >= sectionTop && scrolled < sectionBottom) {
+                    // Remover clase activa de todos los puntos
+                    scrollDots.forEach(dot => dot.classList.remove('active'));
+                    // Añadir clase activa al punto actual
+                    scrollDots[index].classList.add('active');
+                }
+            }
+        });
+    });
+    
+    // Click en puntos para navegar a secciones
+    scrollDots.forEach((dot, index) => {
+        dot.addEventListener('click', function() {
+            const targetSection = document.getElementById(sections[index]);
+            if (targetSection) {
+                const offsetTop = targetSection.offsetTop - 80;
+                
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+function initializeScrollProgress() {
+    const scrollProgress = document.querySelector('.scroll-progress');
+    
+    if (scrollProgress) {
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrolled / maxScroll) * 100;
+            
+            scrollProgress.style.width = progress + '%';
+        });
+    }
+}
+
+function initializeIntersectionObservers() {
+    // Observador para secciones con fade
+    const sectionObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observador para animaciones escalonadas
+    const staggerObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+    });
+
+    // Observar secciones con fade
+    const fadeSections = document.querySelectorAll('.section-fade');
+    fadeSections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+
+    // Observar elementos con animación escalonada
+    const staggerElements = document.querySelectorAll('.stagger-animation');
+    staggerElements.forEach(element => {
+        staggerObserver.observe(element);
+    });
+}
+
+// Función para el indicador de scroll hacia abajo
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollDownHint = document.querySelector('.scroll-down-hint');
+    
+    if (scrollDownHint) {
+        scrollDownHint.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const offsetTop = targetSection.offsetTop - 80;
+                
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
+});
+
+// Mejorar efectos de hover existentes
+document.addEventListener('DOMContentLoaded', function() {
+    const hoverElements = document.querySelectorAll('.hover-lift');
+    
+    hoverElements.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0 10px 25px rgba(78, 205, 196, 0.2)';
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+        });
+    });
+});
+
+// Función específica para asegurar que el marquee funcione
+function ensureMarqueeWorks() {
+    const marqueeTrack = document.querySelector('.tech-marquee-track');
+    if (!marqueeTrack) return;
+    
+    // Función para reiniciar la animación del marquee
+    function restartMarquee() {
+        // Detener la animación actual
+        marqueeTrack.style.animation = 'none';
+        marqueeTrack.style.webkitAnimation = 'none';
+        marqueeTrack.style.mozAnimation = 'none';
+        marqueeTrack.style.oAnimation = 'none';
+        
+        // Forzar un reflow
+        marqueeTrack.offsetHeight;
+        
+        // Reiniciar la animación
+        marqueeTrack.style.animation = 'marquee 30s linear infinite';
+        marqueeTrack.style.webkitAnimation = 'marquee 30s linear infinite';
+        marqueeTrack.style.mozAnimation = 'marquee 30s linear infinite';
+        marqueeTrack.style.oAnimation = 'marquee 30s linear infinite';
+    }
+    
+    // Verificar si la animación está funcionando
+    function checkMarqueeAnimation() {
+        const computedStyle = window.getComputedStyle(marqueeTrack);
+        const animationName = computedStyle.animationName || computedStyle.webkitAnimationName;
+        
+        if (animationName === 'none' || animationName === '') {
+            console.log('Marquee animation stopped, restarting...');
+            restartMarquee();
+        }
+    }
+    
+    // Reiniciar la animación cuando la sección entre en vista
+    const techSection = document.querySelector('.technology-section');
+    if (techSection) {
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(restartMarquee, 100);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(techSection);
+    }
+    
+    // Asegurar que la animación funcione después de la carga
+    setTimeout(restartMarquee, 500);
+    
+    // Verificar periódicamente si la animación está funcionando
+    setInterval(checkMarqueeAnimation, 10000);
+    
+    // Asegurar que la animación funcione después de que la página esté completamente cargada
+    window.addEventListener('load', function() {
+        setTimeout(restartMarquee, 1000);
+    });
+} 
