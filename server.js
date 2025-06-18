@@ -44,6 +44,20 @@ app.get('/api/active-sessions', async (req, res) => {
   }
 });
 
+app.get('/api/recent-activity', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('user_activity')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(3);
+    if (error) throw error;
+    res.json({ activities: data });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor Express escuchando en http://localhost:${PORT}`);
 });
