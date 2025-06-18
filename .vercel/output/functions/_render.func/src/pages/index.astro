@@ -1,0 +1,2147 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ScrollAnimations from '../components/ScrollAnimations.jsx';
+---
+
+<Layout title="Dictum - Sistema de Gestión Legal">
+  <!-- Barra de progreso de scroll -->
+  <div class="scroll-progress"></div>
+
+  <!-- Indicador de scroll lateral -->
+  <div class="scroll-indicator">
+    <div class="scroll-dot" data-section="inicio"></div>
+    <div class="scroll-dot" data-section="personajes"></div>
+    <div class="scroll-dot" data-section="tecnologia"></div>
+    <div class="scroll-dot" data-section="descargar"></div>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="inicio" class="hero hero-scroll-effect">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          <span class="title-main">Dictum</span>
+        </h1>
+        <div class="hero-info">
+          <div class="status-row">
+            <span class="status-text status-available">Ya Disponible</span>
+            <span class="platform-item platform-windows">
+              <i class="fas fa-check"></i> Windows
+            </span>
+          </div>
+          <div class="status-row">
+            <span class="status-text status-coming-soon">Coming Soon 2025</span>
+            <span class="platform-item platform-web">
+              Web
+            </span>
+          </div>
+        </div>
+        <p class="hero-description">
+          Una aplicación revolucionaria que transforma la gestión de bufetes de abogados. 
+          Diseñada para profesionales que buscan eficiencia, seguridad y una experiencia de usuario excepcional.
+        </p>
+        <div class="hero-buttons">
+          <a href="/Recursos/Instalador/Dictum.msi" class="btn btn-primary hover-lift" download>Descargar</a>
+          <button class="btn-login hover-lift" onclick="window.location.href='/login'">
+            <i class="fas fa-sign-in-alt"></i>
+            Iniciar Sesión
+          </button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="app-showcase">
+          <img src="/Recursos/Main/mainclaro.png" alt="Dictum App Interface" class="app-screenshot" style="width: 200%;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicador de scroll hacia abajo -->
+    <div class="scroll-down-hint" data-target="#personajes">
+      <div class="scroll-down-text">Deslizar</div>
+      <div class="scroll-down-arrow"></div>
+    </div>
+  </section>
+
+  <!-- Features Section (Personajes) -->
+  <section id="personajes" class="features-section section-fade">
+    <div class="container">
+      <h2 class="section-title">Funcionalidades Principales</h2>
+      
+      <!-- Búsqueda Avanzada - Funcionalidad Única -->
+      <div class="feature-character stagger-animation">
+        <div class="character-content">
+          <div class="character-text">
+            <h3>Búsqueda Avanzada</h3>
+            <p>Nuestra funcionalidad más innovadora: un sistema de búsqueda único desarrollado completamente por nosotros. No existe ninguna API que ofrezca esta capacidad de búsqueda inteligente en documentos legales. Busca en tiempo real a través de todos tus casos, clientes y documentos con algoritmos personalizados.</p>
+            <div class="character-quotes">
+              <p>"Una búsqueda que entiende el contexto legal como ningún otro sistema."</p>
+            </div>
+            <div class="feature-highlight">
+              <span class="highlight-badge">FUNCIONALIDAD ÚNICA</span>
+              <span class="highlight-text">Desarrollada completamente por nuestro equipo</span>
+            </div>
+          </div>
+          <div class="character-visual">
+            <img src="/Recursos/Busqueda/busquedaClaro.png" alt="Búsqueda Avanzada" class="character-image hover-lift">
+          </div>
+        </div>
+      </div>
+
+      <!-- Gestión de Casos -->
+      <div class="feature-character stagger-animation">
+        <div class="character-content reverse">
+          <div class="character-visual">
+            <img src="/Recursos/Casos/casosclaro.png" alt="Gestión de Casos" class="character-image hover-lift">
+          </div>
+          <div class="character-text">
+            <h3>Gestión de Casos</h3>
+            <p>Organiza y gestiona todos tus casos legales de manera eficiente. Desde el primer contacto hasta la resolución final, mantén un control total sobre cada aspecto de tus casos con herramientas especializadas.</p>
+            <div class="character-quotes">
+              <p>"Todo está organizado y accesible en un solo lugar."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gestión de Clientes -->
+      <div class="feature-character stagger-animation">
+        <div class="character-content">
+          <div class="character-text">
+            <h3>Gestión de Clientes</h3>
+            <p>Mantén una base de datos completa de todos tus clientes con información detallada, historial de casos y comunicación integrada. Cada cliente tiene su historia perfectamente documentada.</p>
+            <div class="character-quotes">
+              <p>"Cada cliente tiene su historia, y ahora está perfectamente documentada."</p>
+            </div>
+          </div>
+          <div class="character-visual">
+            <img src="/Recursos/Clientes/Clientes.png" alt="Gestión de Clientes" class="character-image hover-lift">
+          </div>
+        </div>
+      </div>
+
+      <!-- Gestión de Documentos -->
+      <div class="feature-character stagger-animation">
+        <div class="character-content reverse">
+          <div class="character-visual">
+            <img src="/Recursos/Documentos/documentosclaro.png" alt="Gestión de Documentos" class="character-image hover-lift">
+          </div>
+          <div class="character-text">
+            <h3>Gestión de Documentos</h3>
+            <p>Organiza, categoriza y accede a todos tus documentos legales de manera inteligente. Integración perfecta con el sistema de búsqueda avanzada para encontrar cualquier documento instantáneamente.</p>
+            <div class="character-quotes">
+              <p>"Encuentra cualquier documento en segundos, no en horas."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology Section -->
+  <section id="tecnologia" class="technology-section section-fade">
+    <div class="container">
+      <div class="tech-content">
+        <div class="tech-text">
+          <h2>Construida con Tecnología de Vanguardia</h2>
+          <p>Nuestro sistema utiliza las tecnologías más avanzadas para ofrecer una experiencia robusta y escalable. Desde el frontend hasta el backend, cada componente está optimizado para el máximo rendimiento.</p>
+        </div>
+        
+        <!-- Layout con texto y código lado a lado -->
+        <div class="tech-main-content">
+          <div class="tech-description">
+            <p>Desarrollado con las últimas tecnologías de Microsoft y herramientas de vanguardia para garantizar la máxima eficiencia y seguridad en la gestión legal.</p>
+          </div>
+          
+          <!-- Código de ejemplo -->
+          <div class="tech-visual">
+            <div class="code-animation">
+              <div class="code-line">using LegalERP.Core;</div>
+              <div class="code-line">var app = new LegalERPApplication();</div>
+              <div class="code-line">app.InitializeDatabase();</div>
+              <div class="code-line">// ¡Sistema listo para usar!</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Marquee de Tecnologías -->
+        <div class="tech-marquee-container">
+          <div class="tech-marquee">
+            <div class="tech-marquee-track">
+              <!-- Primera fila de tecnologías -->
+              <div class="tech-marquee-item">
+                <i class="fab fa-microsoft"></i>
+                <span>.NET 9</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-code"></i>
+                <span>C#</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-desktop"></i>
+                <span>WPF</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-paint-brush"></i>
+                <span>Fluent Design</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-database"></i>
+                <span>Supabase</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-brain"></i>
+                <span>IA Generativa</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-robot"></i>
+                <span>Selenium</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fab fa-windows"></i>
+                <span>Windows</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-cloud"></i>
+                <span>Cloud Services</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-sliders-h"></i>
+                <span>Configuración</span>
+              </div>
+              
+              <!-- Duplicar elementos para el efecto infinito -->
+              <div class="tech-marquee-item">
+                <i class="fab fa-microsoft"></i>
+                <span>.NET 9</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-code"></i>
+                <span>C#</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-desktop"></i>
+                <span>WPF</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-paint-brush"></i>
+                <span>Fluent Design</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-database"></i>
+                <span>Supabase</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-brain"></i>
+                <span>IA Generativa</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-robot"></i>
+                <span>Selenium</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fab fa-windows"></i>
+                <span>Windows</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-cloud"></i>
+                <span>Cloud Services</span>
+              </div>
+              <div class="tech-marquee-item">
+                <i class="fas fa-sliders-h"></i>
+                <span>Configuración</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials-section section-fade">
+    <div class="container">
+      <h2 class="section-title">Lo que nuestros usuarios dicen</h2>
+      <div class="testimonials-marquee-container">
+        <div class="testimonials-marquee">
+          <div class="testimonials-marquee-track">
+            <!-- Testimonio 1: Zegios -->
+            <div class="testimonial-card hover-lift">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">Z</div>
+                <div>
+                  <h3 class="reviewer-name">Zegios</h3>
+                  <p class="reviewer-role">Tester de la aplicación</p>
+                </div>
+              </div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-quote">
+                "Dictum ha resultado ser una aplicación solida. Su sistema de busqueda es facil de usar."
+              </p>
+            </div>
+
+            <!-- Testimonio 2: Magu4 -->
+            <div class="testimonial-card hover-lift">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">M</div>
+                <div>
+                  <h3 class="reviewer-name">Magu4</h3>
+                  <p class="reviewer-role">Tester de la aplicación</p>
+                </div>
+              </div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-quote">
+                "La gestión de casos es impecable. Todo organizado y accesible, justo lo que ofrece."
+              </p>
+            </div>
+
+            <!-- Testimonio 3: taeyyyy -->
+            <div class="testimonial-card hover-lift">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">T</div>
+                <div>
+                  <h3 class="reviewer-name">taeyyyy</h3>
+                  <p class="reviewer-role">Tester de la aplicación</p>
+                </div>
+              </div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-quote">
+                "Una interfaz moderna y fluida. Es un placer haber ayudado con la traduccion de la aplicación."
+              </p>
+            </div>
+
+            <!-- Testimonio 4: ๖̶̶̶ ζ͜͡ elalias -->
+            <div class="testimonial-card hover-lift">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">E</div>
+                <div>
+                  <h3 class="reviewer-name">๖̶̶̶ ζ͜͡ elalias</h3>
+                  <p class="reviewer-role">Tester de la aplicación</p>
+                </div>
+              </div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-quote">
+                "El sistema de guardado de archivos en la nube es facil de usar."
+              </p>
+            </div>
+
+            <!-- Testimonio 5: Ana García - Abogada Corporativa -->
+            <div class="testimonial-card hover-lift">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">A</div>
+                <div>
+                  <h3 class="reviewer-name">Ana García</h3>
+                  <p class="reviewer-role">Abogada Corporativa</p>
+                </div>
+              </div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-quote">
+                "Los reportes personalizados me dan una visión clara de mi práctica. Es como tener un consultor siempre a mano."
+              </p>
+            </div>
+
+            <!-- Testimonio 6: Javier Soto - Secretario Legal -->
+            <div class="testimonial-card hover-lift">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">J</div>
+                <div>
+                  <h3 class="reviewer-name">Javier Soto</h3>
+                  <p class="reviewer-role">Secretario Legal</p>
+                </div>
+              </div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-quote">
+                "La gestión de clientes ha simplificado mi día a día. Todo en un solo lugar y muy fácil de usar."
+              </p>
+            </div>
+
+            <!-- Duplicar elementos para el efecto infinito -->
+            <div class="testimonial-card hover-lift">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">Z</div>
+                <div>
+                  <h3 class="reviewer-name">Zegios</h3>
+                  <p class="reviewer-role">Tester de la aplicación</p>
+                </div>
+              </div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-quote">
+                "Dictum ha resultado ser una aplicación solida. Su sistema de busqueda es facil de usar."
+              </p>
+            </div>
+            <div class="testimonial-card hover-lift">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">M</div>
+                <div>
+                  <h3 class="reviewer-name">Magu4</h3>
+                  <p class="reviewer-role">Tester de la aplicación</p>
+                </div>
+              </div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-quote">
+                "La gestión de casos es impecable. Todo organizado y accesible, justo lo que ofrece."
+              </p>
+            </div>
+            <div class="testimonial-card hover-lift">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">T</div>
+                <div>
+                  <h3 class="reviewer-name">taeyyyy</h3>
+                  <p class="reviewer-role">Tester de la aplicación</p>
+                </div>
+              </div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-quote">
+                "Una interfaz moderna y fluida. Es un placer haber ayudado con la traduccion de la aplicación."
+              </p>
+            </div>
+            <div class="testimonial-card hover-lift">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">E</div>
+                <div>
+                  <h3 class="reviewer-name">๖̶̶̶ ζ͜͡ elalias</h3>
+                  <p class="reviewer-role">Tester de la aplicación</p>
+                </div>
+              </div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-quote">
+                "El sistema de guardado de archivos en la nube es facil de usar."
+              </p>
+            </div>
+            <div class="testimonial-card hover-lift">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">A</div>
+                <div>
+                  <h3 class="reviewer-name">Ana García</h3>
+                  <p class="reviewer-role">Abogada Corporativa</p>
+                </div>
+              </div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-quote">
+                "Los reportes personalizados me dan una visión clara de mi práctica. Es como tener un consultor siempre a mano."
+              </p>
+            </div>
+            <div class="testimonial-card hover-lift">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">J</div>
+                <div>
+                  <h3 class="reviewer-name">Javier Soto</h3>
+                  <p class="reviewer-role">Secretario Legal</p>
+                </div>
+              </div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-quote">
+                "La gestión de clientes ha simplificado mi día a día. Todo en un solo lugar y muy fácil de usar."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section id="descargar" class="download-section section-fade">
+    <div class="container">
+      <h2>Descarga Dictum</h2>
+      <p>Disponible para Windows • Versión Web próximamente</p>
+      <div class="download-buttons">
+        <a href="/Recursos/Instalador/Dictum.msi" class="download-btn hover-lift" download>
+          <i class="fab fa-windows"></i>
+          <div>
+            <span>Descargar para</span>
+            <strong>Windows</strong>
+          </div>
+        </a>
+        <a href="#" class="download-btn coming-soon-btn">
+          <i class="fas fa-globe"></i>
+          <div>
+            <span>Próximamente</span>
+            <strong>Versión Web</strong>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Dictum</h3>
+          <p>El sistema de gestión integral para bufetes de abogados</p>
+        </div>
+        <div class="footer-section">
+          <h4>Enlaces</h4>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#personajes">Funcionalidades</a></li>
+            <li><a href="#tecnologia">Tecnología</a></li>
+            <li><a href="#descargar">Descargar</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Soporte</h4>
+          <ul>
+            <li><a href="#">Documentación</a></li>
+            <li><a href="#">Contacto</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Síguenos</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Dictum. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Animations Component -->
+  <ScrollAnimations client:load />
+</Layout>
+
+<style>
+  .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+  }
+
+  /* Scroll Progress Bar */
+  .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
+      z-index: 1002;
+      transition: width 0.1s ease;
+  }
+
+  /* Scroll Indicator */
+  .scroll-indicator {
+      position: fixed;
+      top: 50%;
+      right: 30px;
+      transform: translateY(-50%);
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+  }
+
+  .scroll-indicator.visible {
+      opacity: 1;
+  }
+
+  .scroll-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+  }
+
+  .scroll-dot:hover {
+      background: rgba(78, 205, 196, 0.6);
+      border-color: rgba(78, 205, 196, 0.8);
+      transform: scale(1.2);
+      box-shadow: 0 0 15px rgba(78, 205, 196, 0.4);
+  }
+
+  .scroll-dot.active {
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      border-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 20px rgba(78, 205, 196, 0.6);
+      animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  /* Hero Section */
+  .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #000000;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+          radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+          radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+      animation: subtleMove 30s ease-in-out infinite;
+  }
+
+  .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+  }
+
+  .hero-text {
+      display: flex;
+      flex-direction: column;
+  }
+
+  .hero-title {
+      margin-bottom: 2rem;
+  }
+
+  .title-main {
+      display: block;
+      font-size: 4rem;
+      font-weight: 900;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 3s ease-in-out infinite;
+      margin-bottom: 0.5rem;
+  }
+
+  .hero-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+  }
+
+  .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 350px;
+  }
+
+  .status-text {
+      min-width: 150px;
+      text-align: right;
+      font-size: 1.2rem;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+  }
+
+  .status-coming-soon {
+      font-size: 1rem;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      opacity: 1;
+      animation: neonTextPulseRed 2s ease-in-out infinite;
+  }
+
+  @keyframes neonTextPulseRed {
+    0%, 100% {
+      text-shadow: 0 0 5px rgba(255, 107, 107, 0.7), 0 0 10px rgba(255, 107, 107, 0.5);
+    }
+    50% {
+      text-shadow: 0 0 10px rgba(255, 107, 107, 1), 0 0 20px rgba(255, 107, 107, 0.8);
+    }
+  }
+
+  .platforms-list {
+      display: none;
+  }
+
+  .platform-item {
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      position: relative;
+  }
+
+  /* Estilo específico para Windows */
+  .platform-windows {
+      background: rgba(78, 205, 196, 0.2);
+      border: 1px solid #4ecdc4;
+      color: #ffffff;
+  }
+
+  .platform-windows .fa-check {
+      color: #4ecdc4;
+  }
+
+  /* Estilo específico para Web */
+  .platform-web {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      animation: neonPulseRed 2s ease-in-out infinite;
+  }
+
+  .web-coming-soon-tag {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      color: #ffffff;
+      padding: 0.2rem 0.6rem;
+      border-radius: 5px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      transform: rotate(5deg);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      animation: pulse 2s ease-in-out infinite;
+  }
+
+  .hero-description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #cccccc;
+      margin-bottom: 2rem;
+  }
+
+  .hero-buttons {
+      display: flex;
+      gap: 1rem;
+  }
+
+  .btn {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+  }
+
+  .btn-primary {
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+  }
+
+  .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+  }
+
+  /* Botón de Login con Animated Gradient Text */
+  .btn-login {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-image: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #ff6b6b);
+      background-size: 300% 300%;
+      animation: gradientShift 3s ease-in-out infinite;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-width: 160px;
+      height: 50px;
+      font-family: 'Inter', sans-serif;
+  }
+
+  .btn-login::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.5s ease;
+  }
+
+  .btn-login::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, rgba(78, 205, 196, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s ease;
+      z-index: -1;
+  }
+
+  .btn-login:hover {
+      transform: translateY(-3px);
+      box-shadow: 
+          0 10px 25px rgba(78, 205, 196, 0.3),
+          0 0 20px rgba(78, 205, 196, 0.2),
+          inset 0 0 20px rgba(78, 205, 196, 0.1);
+      border-color: rgba(78, 205, 196, 0.5);
+      background-image: linear-gradient(45deg, #4ecdc4, #45b7d1, #ff6b6b, #4ecdc4);
+  }
+
+  .btn-login:hover::before {
+      left: 100%;
+  }
+
+  .btn-login:hover::after {
+      width: 200px;
+      height: 200px;
+  }
+
+  .btn-login i {
+      font-size: 1.1rem;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 3s ease-in-out infinite;
+      transition: all 0.3s ease;
+  }
+
+  .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .app-showcase {
+      position: relative;
+      max-width: 900px;
+      perspective: 1000px;
+  }
+
+  .app-screenshot {
+      width: 200%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 
+          0 20px 40px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.1),
+          0 0 50px rgba(78, 205, 196, 0.3),
+          0 0 100px rgba(255, 107, 107, 0.2);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: rotateY(-5deg) rotateX(5deg) translateZ(20px);
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+      animation: float3D 6s ease-in-out infinite;
+  }
+
+  .app-screenshot:hover {
+      transform: rotateY(-10deg) rotateX(10deg) translateZ(40px) scale(1.05);
+      box-shadow: 
+          0 30px 60px rgba(0, 0, 0, 0.6),
+          0 0 0 1px rgba(255, 255, 255, 0.2),
+          0 0 80px rgba(78, 205, 196, 0.5),
+          0 0 150px rgba(255, 107, 107, 0.3);
+  }
+
+  /* Scroll Down Hint */
+  .scroll-down-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      z-index: 10;
+  }
+
+  .scroll-down-hint:hover {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-5px);
+  }
+
+  .scroll-down-text {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      animation: fadeInOut 2s ease-in-out infinite;
+  }
+
+  .scroll-down-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid rgba(78, 205, 196, 0.8);
+      border-bottom: 2px solid rgba(78, 205, 196, 0.8);
+      transform: rotate(45deg);
+      animation: bounceArrow 2s ease-in-out infinite;
+  }
+
+  /* Features Section */
+  .features-section {
+      padding: 6rem 0;
+      background: #000000;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .features-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+          radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 40%),
+          radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.01) 0%, transparent 40%);
+      animation: subtleMove 35s ease-in-out infinite reverse;
+      pointer-events: none;
+  }
+
+  .section-title {
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 4rem;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 3s ease-in-out infinite;
+      position: relative;
+      z-index: 2;
+  }
+
+  .feature-character {
+      margin-bottom: 6rem;
+      position: relative;
+      z-index: 2;
+  }
+
+  .character-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+  }
+
+  .character-content.reverse {
+      grid-template-columns: 1fr 1fr;
+  }
+
+  .character-content.reverse .character-visual {
+      order: -1;
+  }
+
+  .character-text h3 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+  }
+
+  .character-text p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #cccccc;
+      margin-bottom: 2rem;
+  }
+
+  .character-quotes {
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid #4ecdc4;
+      padding: 1.5rem;
+      border-radius: 0 10px 10px 0;
+      backdrop-filter: blur(10px);
+  }
+
+  .character-quotes p {
+      font-style: italic;
+      color: #4ecdc4;
+      margin: 0;
+  }
+
+  .feature-highlight {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+  }
+
+  .highlight-badge {
+      display: inline-block;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      align-self: flex-start;
+      animation: pulse 2s ease-in-out infinite;
+  }
+
+  .highlight-text {
+      color: #ff6b6b;
+      font-size: 0.9rem;
+      font-weight: 500;
+      font-style: italic;
+  }
+
+  .character-visual {
+      display: flex;
+      justify-content: center;
+  }
+
+  .character-image {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+  }
+
+  .character-image:hover {
+      transform: scale(1.05);
+  }
+
+  /* Technology Section */
+  .technology-section {
+      padding: 6rem 0;
+      background: #000000;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .technology-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+          radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 60%);
+      animation: subtleMove 40s ease-in-out infinite;
+      pointer-events: none;
+  }
+
+  .tech-content {
+      position: relative;
+      z-index: 2;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+  }
+
+  .tech-text h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+      text-align: center;
+  }
+
+  .tech-text p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #cccccc;
+      margin-bottom: 3rem;
+      text-align: center;
+  }
+
+  .tech-main-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-bottom: 4rem;
+  }
+
+  .tech-description {
+      text-align: center;
+  }
+
+  .tech-description p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #cccccc;
+      margin-bottom: 0;
+  }
+
+  .tech-visual {
+      display: flex;
+      justify-content: center;
+  }
+
+  .code-animation {
+      background: #1e1e1e;
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 400px;
+  }
+
+  .code-line {
+      color: #4ecdc4;
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeInUp 0.5s ease forwards;
+  }
+
+  .code-line:nth-child(1) { animation-delay: 0.2s; }
+  .code-line:nth-child(2) { animation-delay: 0.4s; }
+  .code-line:nth-child(3) { animation-delay: 0.6s; }
+  .code-line:nth-child(4) { animation-delay: 0.8s; }
+
+  /* Marquee de Tecnologías */
+  .tech-marquee-container {
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 15px;
+      padding: 2rem 0;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+  }
+
+  .tech-marquee {
+      position: relative;
+      width: 100%;
+      height: 80px;
+      overflow: hidden;
+  }
+
+  .tech-marquee-track {
+      display: flex;
+      align-items: center;
+      animation: marquee 30s linear infinite;
+      width: max-content;
+      will-change: transform;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+  }
+
+  .tech-marquee-track:hover {
+      animation-play-state: paused;
+  }
+
+  .tech-marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem 1.5rem;
+      margin: 0 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+  }
+
+  .tech-marquee-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #4ecdc4;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(78, 205, 196, 0.2);
+  }
+
+  .tech-marquee-item i {
+      font-size: 1.5rem;
+      color: #4ecdc4;
+  }
+
+  .tech-marquee-item span {
+      font-weight: 500;
+      color: #ffffff;
+      font-size: 0.9rem;
+  }
+
+  /* Download Section */
+  .download-section {
+      padding: 6rem 0;
+      background: #000000;
+      text-align: center;
+  }
+
+  .download-section h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 3s ease-in-out infinite;
+  }
+
+  .download-section p {
+      font-size: 1.2rem;
+      color: #cccccc;
+      margin-bottom: 3rem;
+  }
+
+  .download-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+  }
+
+  .download-btn {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      text-decoration: none;
+      color: #ffffff;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      min-width: 200px;
+  }
+
+  .download-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #4ecdc4;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(78, 205, 196, 0.3);
+  }
+
+  .download-btn i {
+      font-size: 2rem;
+      color: #4ecdc4;
+  }
+
+  .download-btn div {
+      text-align: left;
+  }
+
+  .download-btn span {
+      display: block;
+      font-size: 0.9rem;
+      color: #cccccc;
+  }
+
+  .download-btn strong {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 600;
+  }
+
+  .coming-soon-btn {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+      color: rgba(255, 255, 255, 0.6) !important;
+      cursor: not-allowed;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .coming-soon-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: shimmer 2s infinite;
+  }
+
+  .coming-soon-btn:hover {
+      transform: none !important;
+      box-shadow: none !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+  }
+
+  .coming-soon-btn i {
+      color: rgba(255, 255, 255, 0.4) !important;
+  }
+
+  .coming-soon-btn span {
+      color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .coming-soon-btn strong {
+      color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  /* Footer */
+  .footer {
+      background: #000000;
+      padding: 4rem 0 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+  }
+
+  .footer-section h3,
+  .footer-section h4 {
+      color: #ffffff;
+      margin-bottom: 1rem;
+  }
+
+  .footer-section h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+  }
+
+  .footer-section p,
+  .footer-section li {
+      color: #cccccc;
+      line-height: 1.6;
+  }
+
+  .footer-section ul {
+      list-style: none;
+  }
+
+  .footer-section ul li {
+      margin-bottom: 0.5rem;
+  }
+
+  .footer-section a {
+      color: #cccccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+  }
+
+  .footer-section a:hover {
+      color: #4ecdc4;
+  }
+
+  .social-links {
+      display: flex;
+      gap: 1rem;
+  }
+
+  .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+  }
+
+  .social-links a:hover {
+      background: #4ecdc4;
+      transform: translateY(-2px);
+  }
+
+  .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cccccc;
+  }
+
+  /* Animation Classes */
+  .section-fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+  }
+
+  .section-fade.in-view {
+      opacity: 1;
+      transform: translateY(0);
+  }
+
+  .stagger-animation {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+  }
+
+  .stagger-animation.in-view {
+      opacity: 1;
+      transform: translateY(0);
+  }
+
+  .stagger-animation:nth-child(1) { transition-delay: 0.1s; }
+  .stagger-animation:nth-child(2) { transition-delay: 0.2s; }
+  .stagger-animation:nth-child(3) { transition-delay: 0.3s; }
+  .stagger-animation:nth-child(4) { transition-delay: 0.4s; }
+
+  .hover-lift {
+      transition: all 0.3s ease;
+  }
+
+  .hover-lift:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(78, 205, 196, 0.2);
+  }
+
+  .hero-scroll-effect {
+      transition: all 0.6s ease;
+  }
+
+  .hero-scroll-effect.scrolling {
+      transform: scale(0.98);
+      filter: brightness(0.9);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+      .hero-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 2rem;
+      }
+      
+      .title-main {
+          font-size: 2.5rem;
+      }
+      
+      .hero-info {
+          align-items: center;
+      }
+      
+      .status-row {
+          flex-direction: column;
+          align-items: center;
+          gap: 0.5rem;
+          max-width: unset;
+      }
+      
+      .status-text {
+          text-align: center;
+          min-width: unset;
+          font-size: 1rem;
+      }
+      
+      .platform-item {
+          font-size: 0.8rem;
+          padding: 0.4rem 0.8rem;
+      }
+      
+      .status-available, .status-coming-soon {
+          font-size: 0.8rem;
+          letter-spacing: 1px;
+      }
+      
+      .web-coming-soon-tag {
+          font-size: 0.5rem;
+          padding: 0.1rem 0.4rem;
+          top: -8px;
+          right: -8px;
+      }
+      
+      .app-showcase {
+          max-width: 100%;
+          perspective: 500px;
+      }
+      
+      .app-screenshot {
+          transform: rotateY(-3deg) rotateX(3deg) translateZ(10px);
+          animation: float3DMobile 4s ease-in-out infinite;
+          max-width: 95%;
+          margin: 0 auto;
+      }
+      
+      .app-screenshot:hover {
+          transform: rotateY(-5deg) rotateX(5deg) translateZ(20px) scale(1.02);
+      }
+      
+      .character-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+      }
+      
+      .character-content.reverse .character-visual {
+          order: 0;
+      }
+      
+      .character-image {
+          max-width: 100%;
+      }
+      
+      .tech-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+      }
+      
+      .tech-main-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          margin-bottom: 3rem;
+      }
+      
+      .tech-description {
+          text-align: center;
+      }
+      
+      .tech-marquee-container {
+          padding: 1.5rem 0;
+      }
+      
+      .tech-marquee {
+          height: 60px;
+      }
+      
+      .tech-marquee-item {
+          padding: 0.8rem 1rem;
+          margin: 0 0.5rem;
+      }
+      
+      .tech-marquee-item i {
+          font-size: 1.2rem;
+      }
+      
+      .tech-marquee-item span {
+          font-size: 0.8rem;
+      }
+      
+      .download-buttons {
+          flex-direction: column;
+          align-items: center;
+      }
+      
+      .section-title {
+          font-size: 2rem;
+      }
+      
+      .character-text h3 {
+          font-size: 2rem;
+      }
+      
+      .tech-text h2 {
+          font-size: 2rem;
+      }
+      
+      .download-section h2 {
+          font-size: 2rem;
+      }
+      
+      .scroll-indicator {
+          right: 15px;
+          gap: 10px;
+      }
+      
+      .scroll-dot {
+          width: 10px;
+          height: 10px;
+      }
+      
+      .scroll-down-hint {
+          bottom: 20px;
+      }
+      
+      .scroll-down-text {
+          font-size: 0.8rem;
+      }
+      
+      .scroll-down-arrow {
+          width: 15px;
+          height: 15px;
+      }
+      
+      .hero-scroll-effect.scrolling {
+          transform: scale(0.99);
+      }
+  }
+
+  @media (max-width: 480px) {
+      .container {
+          padding: 0 15px;
+      }
+      
+      .title-main {
+          font-size: 2rem;
+      }
+      
+      .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+      }
+      
+      .btn {
+          width: 100%;
+          max-width: 300px;
+      }
+      
+      .scroll-indicator {
+          right: 10px;
+          gap: 8px;
+      }
+      
+      .scroll-dot {
+          width: 8px;
+          height: 8px;
+      }
+      
+      .scroll-progress {
+          height: 2px;
+      }
+  }
+
+  /* Testimonials Section */
+  .testimonials-section {
+      padding: 6rem 0;
+      background: #000000;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .testimonials-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+          radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 40%),
+          radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.01) 0%, transparent 40%);
+      animation: subtleMove 45s ease-in-out infinite reverse;
+      pointer-events: none;
+  }
+
+  /* Nuevo Marquee de Testimonios */
+  .testimonials-marquee-container {
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 15px;
+      padding: 2rem 0; /* Ajustar padding si es necesario */
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      margin-top: 4rem; /* Separación del título */
+  }
+
+  .testimonials-marquee {
+      position: relative;
+      width: 100%;
+      height: auto; /* Altura automática para que las tarjetas se adapten */
+      overflow: hidden;
+  }
+
+  .testimonials-marquee-track {
+      display: flex;
+      align-items: flex-start; /* Alinear arriba para tarjetas de diferente altura */
+      animation: marqueeTestimonials 60s linear infinite; /* Animación más lenta para más testimonios */
+      width: max-content; /* Permitir que el contenido fluya */
+      will-change: transform;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      padding: 0 2rem; /* Añadir padding horizontal para espaciar las tarjetas */
+  }
+
+  .testimonials-marquee-track:hover {
+      animation-play-state: paused;
+  }
+
+  .testimonial-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+      flex-shrink: 0; /* Evitar que las tarjetas se encojan */
+      width: 350px; /* Ancho fijo para cada tarjeta en el marquee */
+      margin-right: 2rem; /* Espaciado entre tarjetas */
+  }
+
+  .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(78, 205, 196, 0.2);
+  }
+
+  .reviewer-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+  }
+
+  .reviewer-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4); /* Gradient for avatars */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-right: 1rem;
+      flex-shrink: 0;
+  }
+
+  .reviewer-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+  }
+
+  .reviewer-role {
+      font-size: 0.8rem;
+      color: #cccccc;
+  }
+
+  .stars {
+      margin-bottom: 1rem;
+  }
+
+  .stars .fa-star {
+      color: #ffd700; /* Gold color for stars */
+      font-size: 0.9rem;
+      margin-right: 0.2rem;
+  }
+
+  .testimonial-quote {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #cccccc;
+      font-style: italic;
+  }
+
+  /* Responsive Adjustments for Testimonials */
+  @media (max-width: 768px) {
+      .testimonials-marquee-track {
+          animation: marqueeTestimonials 40s linear infinite; /* Animación más rápida en móvil */
+          padding: 0 1rem;
+      }
+      .testimonial-card {
+          width: 280px; /* Ancho más pequeño en móvil */
+          margin-right: 1.5rem;
+      }
+      .testimonials-marquee-container {
+          padding: 1rem 0;
+      }
+      .reviewer-avatar {
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
+      }
+      .reviewer-name {
+          font-size: 1rem;
+      }
+      .reviewer-role {
+          font-size: 0.7rem;
+      }
+      .stars .fa-star {
+          font-size: 0.8rem;
+      }
+      .testimonial-quote {
+          font-size: 0.9rem;
+      }
+  }
+
+  @media (max-width: 480px) {
+      .testimonial-card {
+          width: 250px; /* Ancho aún más pequeño en móvil */
+          margin-right: 1rem;
+      }
+  }
+</style>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        entry.target.classList.add('in-view');
+      }
+    });
+  }, observerOptions);
+
+  // Scroll Progress Bar
+  function updateScrollProgress() {
+    const scrollProgress = document.querySelector('.scroll-progress');
+    if (scrollProgress) {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.body.offsetHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      scrollProgress.style.width = scrollPercent + '%';
+    }
+  }
+
+  // Scroll Indicator
+  function updateScrollIndicator() {
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    const scrollDots = document.querySelectorAll('.scroll-dot');
+    const sections = ['inicio', 'personajes', 'tecnologia', 'descargar'];
+    
+    if (scrollIndicator && scrollDots.length > 0) {
+      // Show indicator after scrolling
+      if (window.pageYOffset > 100) {
+        scrollIndicator.classList.add('visible');
+      } else {
+        scrollIndicator.classList.remove('visible');
+      }
+      
+      // Update active dot
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      
+      scrollDots.forEach((dot, index) => {
+        dot.classList.remove('active');
+        if (currentSection === sections[index]) {
+          dot.classList.add('active');
+        }
+      });
+    }
+  }
+
+  // Hero Scroll Effect
+  function updateHeroScrollEffect() {
+    const hero = document.querySelector('.hero-scroll-effect');
+    if (hero) {
+      if (window.pageYOffset > 50) {
+        hero.classList.add('scrolling');
+      } else {
+        hero.classList.remove('scrolling');
+      }
+    }
+  }
+
+  // Scroll to Section
+  function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Scroll Down Hint Click
+  function handleScrollDownHint() {
+    const scrollHint = document.querySelector('.scroll-down-hint');
+    if (scrollHint) {
+      scrollHint.addEventListener('click', () => {
+        const target = scrollHint.getAttribute('data-target');
+        if (target) {
+          scrollToSection(target.replace('#', ''));
+        }
+      });
+    }
+  }
+
+  // Marquee Animation
+  function initMarquee() {
+    const marqueeTrack = document.querySelector('.tech-marquee-track');
+    if (marqueeTrack) {
+      // Clone items for infinite effect
+      const items = marqueeTrack.querySelectorAll('.tech-marquee-item');
+      items.forEach(item => {
+        const clone = item.cloneNode(true);
+        marqueeTrack.appendChild(clone);
+      });
+    }
+  }
+
+  // Testimonials Marquee Animation
+  function initTestimonialsMarquee() {
+    const testimonialsMarqueeTrack = document.querySelector('.testimonials-marquee-track');
+    if (testimonialsMarqueeTrack) {
+      const testimonialCards = testimonialsMarqueeTrack.querySelectorAll('.testimonial-card');
+      testimonialCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        testimonialsMarqueeTrack.appendChild(clone);
+      });
+    }
+  }
+
+  // Code Animation
+  function initCodeAnimation() {
+    const codeLines = document.querySelectorAll('.code-line');
+    codeLines.forEach((line, index) => {
+      line.style.animationDelay = `${index * 0.2}s`;
+    });
+  }
+
+  // Hover Effects
+  function initHoverEffects() {
+    const hoverElements = document.querySelectorAll('.hover-lift');
+    hoverElements.forEach(element => {
+      element.addEventListener('mouseenter', () => {
+        element.style.transform = 'translateY(-5px)';
+        element.style.boxShadow = '0 10px 25px rgba(78, 205, 196, 0.2)';
+      });
+      
+      element.addEventListener('mouseleave', () => {
+        element.style.transform = 'translateY(0)';
+        element.style.boxShadow = 'none';
+      });
+    });
+  }
+
+  // Smooth Scrolling for Navigation
+  function initSmoothScrolling() {
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').replace('#', '');
+        scrollToSection(targetId);
+      });
+    });
+  }
+
+  // Initialize everything when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    // Observe all elements with animation classes
+    const animatedElements = document.querySelectorAll('.section-fade, .stagger-animation');
+    animatedElements.forEach(el => observer.observe(el));
+    
+    // Initialize scroll indicator click events
+    const scrollDots = document.querySelectorAll('.scroll-dot');
+    scrollDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        const sections = ['inicio', 'personajes', 'tecnologia', 'descargar'];
+        scrollToSection(sections[index]);
+      });
+    });
+    
+    // Initialize all functions
+    initMarquee();
+    initTestimonialsMarquee(); // Call the new function here
+    initCodeAnimation();
+    initHoverEffects();
+    initSmoothScrolling();
+    handleScrollDownHint();
+    
+    // Add scroll event listeners
+    window.addEventListener('scroll', () => {
+      updateScrollProgress();
+      updateScrollIndicator();
+      updateHeroScrollEffect();
+    });
+    
+    // Initial calls
+    updateScrollProgress();
+    updateScrollIndicator();
+    updateHeroScrollEffect();
+  });
+
+  // Add CSS animations
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    @keyframes subtleMove {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-10px, -10px); }
+      50% { transform: translate(10px, -5px); }
+      75% { transform: translate(-5px, 10px); }
+    }
+    
+    @keyframes float3D {
+      0%, 100% { transform: rotateY(-5deg) rotateX(5deg) translateZ(20px) translateY(0px); }
+      50% { transform: rotateY(-5deg) rotateX(5deg) translateZ(20px) translateY(-10px); }
+    }
+    
+    @keyframes float3DMobile {
+      0%, 100% { transform: rotateY(-3deg) rotateX(3deg) translateZ(10px) translateY(0px); }
+      50% { transform: rotateY(-3deg) rotateX(3deg) translateZ(10px) translateY(-5px); }
+    }
+    
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+    
+    @keyframes bounceArrow {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50% { transform: rotate(45deg) translateY(-5px); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(78, 205, 196, 0.6); }
+      50% { box-shadow: 0 0 30px rgba(78, 205, 196, 0.8); }
+    }
+    
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    @keyframes neonPulseRed {
+      0%, 100% { box-shadow: 0 0 10px rgba(255, 107, 107, 0.6), 0 0 20px rgba(255, 107, 107, 0.4); }
+      50% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.8), 0 0 30px rgba(255, 107, 107, 0.6); }
+    }
+
+    @keyframes marqueeTestimonials {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  `;
+  document.head.appendChild(style);
+</script> 
