@@ -10,10 +10,12 @@ export default function Dashboard() {
     activeSessions: 0,
     lastLogin: null
   });
+  const [recentActivity, setRecentActivity] = useState([]);
 
   useEffect(() => {
     checkUser();
     getStats();
+    getRecentActivity();
     // Cargar preferencia de tema desde localStorage
     const savedTheme = localStorage.getItem('darkMode');
     if (savedTheme !== null) {
@@ -75,6 +77,16 @@ export default function Dashboard() {
         totalUsers: 0,
         activeSessions: 0
       }));
+    }
+  };
+
+  const getRecentActivity = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/recent-activity');
+      const data = await response.json();
+      setRecentActivity(data.activities || []);
+    } catch (error) {
+      setRecentActivity([]);
     }
   };
 
@@ -251,26 +263,42 @@ export default function Dashboard() {
                 <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
                   <i className="fas fa-chart-line text-white text-sm"></i>
                 </div>
-                <h3 className={`text-xl font-bold gta-title ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                  Actividad Reciente
-                </h3>
+                <h3 className={`text-xl font-bold gta-title ${darkMode ? 'text-white' : 'text-gray-900'}`}>Actividad Reciente</h3>
               </div>
               <div className="space-y-4">
-                <div className="flex items-center space-x-4 p-3 rounded-xl bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20">
-                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className={`text-sm ${darkMode ? 'text-green-300' : 'text-green-700'}`}>Usuario registrado exitosamente</span>
-                  <span className={`text-xs ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>hace 2 horas</span>
-                </div>
-                <div className="flex items-center space-x-4 p-3 rounded-xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20">
-                  <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
-                  <span className={`text-sm ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>Nueva sesión iniciada</span>
-                  <span className={`text-xs ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>hace 5 horas</span>
-                </div>
-                <div className="flex items-center space-x-4 p-3 rounded-xl bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20">
-                  <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
-                  <span className={`text-sm ${darkMode ? 'text-yellow-300' : 'text-yellow-700'}`}>Actualización de perfil</span>
-                  <span className={`text-xs ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>hace 1 día</span>
-                </div>
+                {recentActivity.length === 0 && (
+                  <div className="text-center text-gray-400">Sin actividad reciente</div>
+                )}
+                {recentActivity.map((act, idx) => (
+                  <div key={act.id || idx} className={`flex items-center space-x-4 p-3 rounded-xl ${
+                    act.activity_type === 'login'
+                      ? 'bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20'
+                      : act.activity_type === 'dashboard_view'
+                      ? 'bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20'
+                      : 'bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20'
+                  }`}>
+                    <div className={`w-3 h-3 rounded-full animate-pulse ${
+                      act.activity_type === 'login'
+                        ? 'bg-green-400'
+                        : act.activity_type === 'dashboard_view'
+                        ? 'bg-blue-400'
+                        : 'bg-yellow-400'
+                    }`}></div>
+                    <span className={`text-sm ${
+                      act.activity_type === 'login'
+                        ? darkMode ? 'text-green-300' : 'text-green-700'
+                        : act.activity_type === 'dashboard_view'
+                        ? darkMode ? 'text-blue-300' : 'text-blue-700'
+                        : darkMode ? 'text-yellow-300' : 'text-yellow-700'
+                    }`}>
+                      {act.activity_type === 'login' && 'Nueva sesión iniciada'}
+                      {act.activity_type === 'dashboard_view' && 'Entró al panel de control'}
+                      {act.activity_type === 'profile_update' && 'Actualización de perfil'}
+                      {/* Puedes añadir más tipos aquí */}
+                    </span>
+                    <span className={`text-xs ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>{timeAgo(act.created_at)}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -372,4 +400,15 @@ export default function Dashboard() {
       `}</style>
     </div>
   );
+}
+
+// Función auxiliar para mostrar el tiempo transcurrido
+function timeAgo(dateString) {
+  const now = new Date();
+  const date = new Date(dateString);
+  const diff = Math.floor((now - date) / 1000); // en segundos
+  if (diff < 60) return `hace ${diff} segundos`;
+  if (diff < 3600) return `hace ${Math.floor(diff / 60)} minutos`;
+  if (diff < 86400) return `hace ${Math.floor(diff / 3600)} horas`;
+  return `hace ${Math.floor(diff / 86400)} días`;
 } 
