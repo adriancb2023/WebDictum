@@ -45,12 +45,21 @@ export default function Dashboard() {
   };
 
   const getStats = async () => {
-    // Simulación de estadísticas - en una aplicación real, esto vendría de la base de datos
-    setStats({
-      totalUsers: 1250,
-      activeSessions: 89,
-      lastLogin: new Date().toLocaleDateString('es-ES')
-    });
+    try {
+      const response = await fetch('http://localhost:3000/api/total-users');
+      const data = await response.json();
+      setStats((prev) => ({
+        ...prev,
+        totalUsers: data.total || 0,
+        activeSessions: 89,
+        lastLogin: new Date().toLocaleDateString('es-ES')
+      }));
+    } catch (error) {
+      setStats((prev) => ({
+        ...prev,
+        totalUsers: 0,
+      }));
+    }
   };
 
   const handleLogout = async () => {
