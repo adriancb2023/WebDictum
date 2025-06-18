@@ -36,6 +36,7 @@ export default function Dashboard() {
         return;
       }
       setUser(user);
+      registrarActividad(user.id);
     } catch (error) {
       console.error('Error checking user:', error);
       window.location.href = '/login';
@@ -44,20 +45,35 @@ export default function Dashboard() {
     }
   };
 
+  const registrarActividad = async (userId) => {
+    await supabase.from('user_activity').insert([
+      {
+        user_id: userId,
+        activity_type: 'dashboard_view',
+        metadata: { page: 'dashboard' }
+      }
+    ]);
+  };
+
   const getStats = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/total-users');
-      const data = await response.json();
+      const totalResponse = await fetch('http://localhost:3000/api/total-users');
+      const totalData = await totalResponse.json();
+
+      const activeResponse = await fetch('http://localhost:3000/api/active-sessions');
+      const activeData = await activeResponse.json();
+
       setStats((prev) => ({
         ...prev,
-        totalUsers: data.total || 0,
-        activeSessions: 89,
+        totalUsers: totalData.total || 0,
+        activeSessions: activeData.activeSessions || 0,
         lastLogin: new Date().toLocaleDateString('es-ES')
       }));
     } catch (error) {
       setStats((prev) => ({
         ...prev,
         totalUsers: 0,
+        activeSessions: 0
       }));
     }
   };
