@@ -23,6 +23,27 @@ app.get('/api/total-users', async (req, res) => {
   }
 });
 
+app.get('/api/active-sessions', async (req, res) => {
+  try {
+    const minutes = 60; // Cambia a los minutos que consideres "activo"
+    const since = new Date(Date.now() - minutes * 60 * 1000).toISOString();
+
+    const { data, error } = await supabase
+      .from('user_activity')
+      .select('user_id', { count: 'exact', head: false })
+      .gte('created_at', since);
+
+    if (error) throw error;
+
+    // Contar usuarios únicos
+    const uniqueUsers = [...new Set(data.map(item => item.user_id))];
+
+    res.json({ activeSessions: uniqueUsers.length });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor Express escuchando en http://localhost:${PORT}`);
 });

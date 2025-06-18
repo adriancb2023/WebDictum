@@ -21,6 +21,14 @@ export default function LoginForm() {
       if (error) throw error;
 
       if (data.user) {
+        // Registrar actividad de login
+        await supabase.from('user_activity').insert([
+          {
+            user_id: data.user.id,
+            activity_type: 'login',
+            metadata: { method: 'password' }
+          }
+        ]);
         window.location.href = '/dashboard';
       }
     } catch (error) {
